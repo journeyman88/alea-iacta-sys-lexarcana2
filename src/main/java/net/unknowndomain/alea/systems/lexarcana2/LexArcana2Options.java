@@ -30,7 +30,7 @@ public class LexArcana2Options extends RpgSystemOptions
     @Override
     public boolean isValid()
     {
-        return !(isHelp() || (firstDice == null && secondDice != null) || (secondDice == null ||  thirdDice != null));
+        return !(isHelp() || (firstDice == null && secondDice != null) || (secondDice == null && thirdDice != null));
     }
 
     public Integer getFirstDice()
