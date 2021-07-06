@@ -4,13 +4,6 @@ A RPG system module for Alea Iacta Est implementing Lex Arcana - 2nd Edition
 ## Description
 This command can take up to 3 parameters, which are the dice points spent on each dice to roll in the single go. In case this is a fate roll, the command will automatically repeat the roll and add the results together.
 
-### Simple Mode
-This mode simply roll a certain number of dice and tries to calculate the Raises using basic rules (if no modifier is attached).
-
-### Character Mode
-This mode, asides from rolling the dice determined by the sum of the parameters, uses the information provided to auto-activate eventual modifiers (reroll one dice, enable double Raises, enable dice explosion) according to the rules. Some modifiers, like 'Joie de Vivre' only works in this mode.
-If a modifier is passed, it will compound with those deducted from the parameters.
-
 ### Roll modifiers
 Passing these parameters, the associated modifier will be enabled:
 
