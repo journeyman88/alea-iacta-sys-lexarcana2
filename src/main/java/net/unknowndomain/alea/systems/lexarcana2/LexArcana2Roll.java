@@ -22,8 +22,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import net.unknowndomain.alea.dice.DiceBuilder;
-import net.unknowndomain.alea.dice.DiceN;
+import net.unknowndomain.alea.random.SingleResult;
+import net.unknowndomain.alea.random.dice.DiceBuilder;
+import net.unknowndomain.alea.random.dice.DiceN;
 import net.unknowndomain.alea.roll.GenericResult;
 import net.unknowndomain.alea.roll.GenericRoll;
 
@@ -74,14 +75,14 @@ public class LexArcana2Roll implements GenericRoll
     
     private LexArcana2Results buildResults()
     {
-        List<Integer> res = new ArrayList<>(diceList.size());
+        List<SingleResult<Integer>> res = new ArrayList<>(diceList.size());
         boolean fateRoll = true;
         while(fateRoll)
         {
             for (DiceN dn : diceList)
             {
-                int r = dn.roll();
-                fateRoll = fateRoll && (r == dn.getMaxResult());
+                SingleResult<Integer> r = dn.nextResult().get();
+                fateRoll = fateRoll && (r.getValue() == dn.getMaxResult());
                 res.add(r);
             }
         }

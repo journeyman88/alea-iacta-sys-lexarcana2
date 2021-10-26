@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import net.unknowndomain.alea.messages.MsgBuilder;
+import net.unknowndomain.alea.random.SingleResult;
 import net.unknowndomain.alea.roll.GenericResult;
 
 /**
@@ -27,18 +28,18 @@ import net.unknowndomain.alea.roll.GenericResult;
  */
 public class LexArcana2Results extends GenericResult
 {
-    private final List<Integer> results;
+    private final List<SingleResult<Integer>> results;
     private int poolSize;
     
-    public LexArcana2Results(List<Integer> results)
+    public LexArcana2Results(List<SingleResult<Integer>> results)
     {
-        List<Integer> tmp = new ArrayList<>(results.size());
+        List<SingleResult<Integer>> tmp = new ArrayList<>(results.size());
         tmp.addAll(results);
         this.results = Collections.unmodifiableList(tmp);
     }
     
 
-    public List<Integer> getResults()
+    public List<SingleResult<Integer>> getResults()
     {
         return results;
     }
@@ -46,9 +47,9 @@ public class LexArcana2Results extends GenericResult
     public Integer getTotal()
     {
         int sum = 0;
-        for (Integer r : results)
+        for (SingleResult<Integer> r : results)
         {
-            sum += r;
+            sum += r.getValue();
         }
         return sum;
     }
@@ -61,24 +62,10 @@ public class LexArcana2Results extends GenericResult
         {
             messageBuilder.append("Roll ID: ").append(getUuid()).appendNewLine();
             messageBuilder.append("Results: ").append(" [ ");
-            int round = 1;
-            for (Integer t : getResults())
+            for (SingleResult<Integer> t : getResults())
             {
-                if (round == 1)
-                {
-                    messageBuilder.append("( ");
-                }
-                messageBuilder.append(t);
-                if (round == poolSize)
-                {
-                    messageBuilder.append("); ");
-                    round = 1;
-                }
-                else
-                {
-                    messageBuilder.append(", ");
-                    round++;
-                }
+                messageBuilder.append("( ").append(t.getLabel()).append(" => ");
+                messageBuilder.append(t.getValue()).append(") ");
             }
             messageBuilder.append("]\n");
         }
