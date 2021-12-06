@@ -61,7 +61,7 @@ public class LexArcana2Command extends RpgSystemCommand
         else
         {
             LexArcana2Options opt = (LexArcana2Options) options;
-            LexArcana2Roll roll = new LexArcana2Roll(opt.getFirstDice(), opt.getSecondDice(), opt.getThirdDice(), opt.getModifiers());
+            LexArcana2Roll roll = new LexArcana2Roll(opt.getFirstDice(), opt.getSecondDice(), opt.getThirdDice(), lang, opt.getModifiers());
             retVal = Optional.of(roll);
         }
         return retVal;

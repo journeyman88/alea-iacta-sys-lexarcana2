@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import net.unknowndomain.alea.random.SingleResult;
 import net.unknowndomain.alea.random.dice.DiceBuilder;
@@ -37,14 +38,15 @@ public class LexArcana2Roll implements GenericRoll
     
     private final List<DiceN> diceList;
     private final Set<LexArcana2Modifiers> mods;
+    private final Locale lang;
     
     
-    public LexArcana2Roll(Integer first, Integer second, Integer third, LexArcana2Modifiers ... mod)
+    public LexArcana2Roll(Integer first, Integer second, Integer third, Locale lang, LexArcana2Modifiers ... mod)
     {
-        this(first, second, third, Arrays.asList(mod));
+        this(first, second, third, lang, Arrays.asList(mod));
     }
     
-    public LexArcana2Roll(Integer first, Integer second, Integer third, Collection<LexArcana2Modifiers> mod)
+    public LexArcana2Roll(Integer first, Integer second, Integer third, Locale lang, Collection<LexArcana2Modifiers> mod)
     {
         this.mods = new HashSet<>();
         if (mod != null)
@@ -62,6 +64,7 @@ public class LexArcana2Roll implements GenericRoll
             tmp.add(DiceBuilder.parseDice(third));
         }
         this.diceList = Collections.unmodifiableList(tmp);
+        this.lang = lang;
     }
     
     @Override
@@ -70,6 +73,7 @@ public class LexArcana2Roll implements GenericRoll
         LexArcana2Results results = buildResults();
         results.setVerbose(mods.contains(LexArcana2Modifiers.VERBOSE));
         results.setPoolSize(this.diceList.size());
+        results.setLang(lang);
         return results;
     }
     

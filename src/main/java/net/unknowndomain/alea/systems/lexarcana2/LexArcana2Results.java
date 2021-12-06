@@ -20,14 +20,16 @@ import java.util.Collections;
 import java.util.List;
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.random.SingleResult;
-import net.unknowndomain.alea.roll.GenericResult;
+import net.unknowndomain.alea.roll.LocalizedResult;
 
 /**
  *
  * @author journeyman
  */
-public class LexArcana2Results extends GenericResult
+public class LexArcana2Results extends LocalizedResult
 {
+    private final static String BUNDLE_NAME = "net.unknowndomain.alea.systems.lexarcana2.RpgSystemBundle";
+    
     private final List<SingleResult<Integer>> results;
     private int poolSize;
     
@@ -57,11 +59,11 @@ public class LexArcana2Results extends GenericResult
     @Override
     protected void formatResults(MsgBuilder messageBuilder, boolean verbose, int indentValue)
     {
-        messageBuilder.append("Total: ").append(getTotal()).appendNewLine();
+        messageBuilder.append(translate("lexarcana2.results.total", getTotal())).appendNewLine();
         if (verbose)
         {
             messageBuilder.append("Roll ID: ").append(getUuid()).appendNewLine();
-            messageBuilder.append("Results: ").append(" [ ");
+            messageBuilder.append(translate("lexarcana2.results.diceResults", getTotal())).append(" [ ");
             for (SingleResult<Integer> t : getResults())
             {
                 messageBuilder.append("( ").append(t.getLabel()).append(" => ");
@@ -79,6 +81,12 @@ public class LexArcana2Results extends GenericResult
     public void setPoolSize(int poolSize)
     {
         this.poolSize = poolSize;
+    }
+
+    @Override
+    protected String getBundleName()
+    {
+        return BUNDLE_NAME;
     }
 
 }
