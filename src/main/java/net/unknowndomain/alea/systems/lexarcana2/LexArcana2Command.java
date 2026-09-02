@@ -17,37 +17,27 @@ package net.unknowndomain.alea.systems.lexarcana2;
 
 import java.util.Locale;
 import java.util.Optional;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.unknowndomain.alea.systems.RpgSystemCommand;
 import net.unknowndomain.alea.systems.RpgSystemDescriptor;
 import net.unknowndomain.alea.roll.GenericRoll;
 import net.unknowndomain.alea.systems.RpgSystemOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author journeyman
  */
+@Slf4j
+@NoArgsConstructor
 public class LexArcana2Command extends RpgSystemCommand
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LexArcana2Command.class);
     private static final RpgSystemDescriptor DESC = new RpgSystemDescriptor("Lex Arcana 2nd Edition", "lex", "lex-arcana-2nd");
-    
-    public LexArcana2Command()
-    {
-        
-    }
     
     @Override
     public RpgSystemDescriptor getCommandDesc()
     {
         return DESC;
-    }
-
-    @Override
-    protected Logger getLogger()
-    {
-        return LOGGER;
     }
 
     @Override
