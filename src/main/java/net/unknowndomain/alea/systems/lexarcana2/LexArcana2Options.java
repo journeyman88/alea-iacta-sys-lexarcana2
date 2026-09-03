@@ -21,11 +21,11 @@ import net.unknowndomain.alea.systems.annotations.RpgSystemOption;
 public class LexArcana2Options extends RpgSystemOptions
 {
     @RpgSystemOption(name = "first-dice", shortcode = "f", description = "lexarcana2.options.first", argName = "firstDice")
-    private Integer firstDice;
+    Integer firstDice;
     @RpgSystemOption(name = "second-dice", shortcode = "s", description = "lexarcana2.options.second", argName = "secondDice")
-    private Integer secondDice;
+    Integer secondDice;
     @RpgSystemOption(name = "third-dice", shortcode = "t", description = "lexarcana2.options.third", argName = "thirdDice")
-    private Integer thirdDice;
+    Integer thirdDice;
     
     @Override
     public boolean isValid()

@@ -23,6 +23,7 @@ import net.unknowndomain.alea.systems.RpgSystemCommand;
 import net.unknowndomain.alea.systems.RpgSystemDescriptor;
 import net.unknowndomain.alea.roll.GenericRoll;
 import net.unknowndomain.alea.systems.RpgSystemOptions;
+import net.unknowndomain.alea.systems.option.RpgSystemParser;
 
 /**
  *
@@ -62,4 +63,11 @@ public class LexArcana2Command extends RpgSystemCommand
     {
         return new LexArcana2Options();
     }
+
+    @Override
+    protected RpgSystemParser systemParser()
+    {
+        return new LexArcana2OptionsParser();
+    }
+
 }

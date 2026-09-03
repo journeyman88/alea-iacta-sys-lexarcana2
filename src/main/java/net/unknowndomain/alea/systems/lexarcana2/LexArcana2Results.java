@@ -21,17 +21,19 @@ import java.util.List;
 import net.unknowndomain.alea.messages.MsgBuilder;
 import net.unknowndomain.alea.random.SingleResult;
 import net.unknowndomain.alea.roll.LocalizedResult;
+import net.unknowndomain.alea.systems.annotations.RpgSystemResult;
 
 /**
  *
  * @author journeyman
  */
+@RpgSystemResult(typeId = "lexarcana2")
 public class LexArcana2Results extends LocalizedResult
 {
     private final static String BUNDLE_NAME = "net.unknowndomain.alea.systems.lexarcana2.RpgSystemBundle";
-    
-    private final List<SingleResult<Integer>> results;
-    private int poolSize;
+
+    final List<SingleResult<Integer>> results;
+    int poolSize;
     
     public LexArcana2Results(List<SingleResult<Integer>> results)
     {
@@ -51,7 +53,7 @@ public class LexArcana2Results extends LocalizedResult
         int sum = 0;
         for (SingleResult<Integer> r : results)
         {
-            sum += r.getValue();
+            sum += r.value();
         }
         return sum;
     }
@@ -66,8 +68,8 @@ public class LexArcana2Results extends LocalizedResult
             messageBuilder.append(translate("lexarcana2.results.diceResults", getTotal())).append(" [ ");
             for (SingleResult<Integer> t : getResults())
             {
-                messageBuilder.append("( ").append(t.getLabel()).append(" => ");
-                messageBuilder.append(t.getValue()).append(") ");
+                messageBuilder.append("( ").append(t.label()).append(" => ");
+                messageBuilder.append(t.value()).append(") ");
             }
             messageBuilder.append("]\n");
         }
@@ -87,6 +89,11 @@ public class LexArcana2Results extends LocalizedResult
     protected String getBundleName()
     {
         return BUNDLE_NAME;
+    }
+
+    void restoreUuid(String uuid)
+    {
+        setUuid(uuid);
     }
 
 }

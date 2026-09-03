@@ -86,7 +86,7 @@ public class LexArcana2Roll implements GenericRoll
             for (DiceN dn : diceList)
             {
                 SingleResult<Integer> r = dn.nextResult().get();
-                fateRoll = fateRoll && (r.getValue() == dn.getMaxResult());
+                fateRoll = fateRoll && (r.value() == dn.getMaxResult());
                 res.add(r);
             }
         }
